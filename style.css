@@ -1,5 +1,21 @@
 .Time {
-    font-size: 40px;
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+}
+.Class {
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 0px;
+}
+.ClassTime{
+    font-size: 25px;
+    text-align: center;
+    margin-top: 0px;
+}
+.Later{
+    font-size: 20px;
     font-weight: bold;
     text-align: center;
 }

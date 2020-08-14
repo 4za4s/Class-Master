@@ -475,11 +475,21 @@ var Classes = {
 }
 function getTime() {
     var time = new Date() 
-    time = time.getHours( )+ ":" +  time.getMinutes();
+    Hour = time.getHours()
+    if (Hour < 10){
+        Hour = "0" + Hour    
+    }
+    Minute = time.getMinutes()
+    if (Minute < 10){
+        Minute = "0" + Minute
+    }
+    time =  Hour + ":" + Minute
     document.getElementById("Time").innerHTML = time;
+
+    
 }
 
-function displayTime() {
+function updateDisplay() {
     getTime()
     mytime = setInterval('getTime()', 20000)
 }
