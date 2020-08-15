@@ -552,9 +552,11 @@ function getClass() {
                 } else if (makeMinutes(time) < makeMinutes(CurrentDay[period].Until)){
                     document.getElementById(i).innerHTML = CurrentDay[period].Class
                     i += 1
-                } else {
-                    document.getElementById(10-i).innerHTML = ""
                 }
+            }
+            while(i < 10){
+                document.getElementById(i).innerHTML = ""
+                i += 1
             }
         }
     }
@@ -585,7 +587,7 @@ function Load() {
     if(localStorage.getItem("Save") !== null){
         Classes = JSON.parse(localStorage.getItem("Save"))
 
-        if(document.URL.includes("index")){
+        if(!(document.URL.includes("TimeTable"))){
             for(var days in Classes){
                 period = 1
                 for(var periods in Classes[days]){
