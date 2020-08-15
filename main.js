@@ -6,7 +6,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -100,7 +100,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -147,7 +147,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -194,7 +194,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -241,7 +241,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -335,7 +335,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -382,7 +382,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -429,7 +429,7 @@ var Classes = {
         Homeroom: {
             Class: "Homeroom",
             From: "8:50",
-            Until: "9:08"
+            Until: "9:10"
         },
         Period1: {
             Class: "",
@@ -489,30 +489,75 @@ function makeMinutes(time)
 function getClass() {
     var time = new Date()
     x = (time.getTime() - firstDay.getTime()) / (1000 * 3600 * 24)
-    x = Math.ceil(x % 14) - 1
-
-    if (Days[x] == "Sun") {
-        document.getElementById("Current").innerHTML = "It's Sunday";
-    }
-    else if (Days[x] == "Sat") {
-        document.getElementById("Current").innerHTML = "It's Saturday";
-    }
-    else {
-        a = Classes[Days[x]]
-    }
+    x = Math.floor(x % 14)
 
     Hour = time.getHours()
-
     if (Hour < 10){
         Hour = "0" + Hour    
     }
+
     Minute = time.getMinutes()
     if (Minute < 10){
         Minute = "0" + Minute
     }
+
     time =  Hour + ":" + Minute
     document.getElementById("Time").innerHTML = time;
 
+    if (Days[x] == "Sun") {  //SUNDAY
+        document.getElementById("Current").innerHTML = "It's Sunday";
+        document.getElementById("ClassTime").innerHTML = "00:00-23:59";
+
+        for(var i = 1; i < 10; i++){
+            document.getElementById(i).innerHTML = ""
+        }
+
+    } else if (Days[x] == "Sat") { //SATURDAY
+        document.getElementById("Current").innerHTML = "It's Saturday";
+        document.getElementById("ClassTime").innerHTML = "00:00-23:59";
+
+        for(var i = 1; i < 10; i++){
+            document.getElementById(i).innerHTML = ""
+        }
+    } else {  //SCHOOL DAYS
+        CurrentDay = Classes[Days[x]]
+
+        if (makeMinutes(time) < 48050){ //BEFORE SCHOOL
+            document.getElementById("Current").innerHTML = "School Morning";
+            document.getElementById("ClassTime").innerHTML = "00:00-08:50";
+            
+            i = 1
+            for(var period in CurrentDay){
+                if (CurrentDay[period].Class == ""){
+                    document.getElementById(i).innerHTML = "No Class"
+                } else {
+                    document.getElementById(i).innerHTML = CurrentDay[period].Class
+                }
+                i += 1
+            }
+
+        } else if (makeMinutes(time) >= 90020){ //AFTER SCHOOL
+            document.getElementById("Current").innerHTML = "After School";
+            document.getElementById("ClassTime").innerHTML = "15:20-23:59";
+
+            for(var i = 1; i < 10; i++){
+                document.getElementById(i).innerHTML = ""
+            }
+        } else { //DURING SCHOOL
+            i = 1
+            for(var period in CurrentDay){
+                if(makeMinutes(time) >= makeMinutes(CurrentDay[period].From) && makeMinutes(time) < makeMinutes(CurrentDay[period].Until)){
+                    document.getElementById("Current").innerHTML = CurrentDay[period].Class;
+                    document.getElementById("ClassTime").innerHTML = CurrentDay[period].From + "-" + CurrentDay[period].Until;
+                } else if (makeMinutes(time) < makeMinutes(CurrentDay[period].Until)){
+                    document.getElementById(i).innerHTML = CurrentDay[period].Class
+                    i += 1
+                } else {
+                    document.getElementById(10-i).innerHTML = ""
+                }
+            }
+        }
+    }
     
 }
 
@@ -540,12 +585,14 @@ function Load() {
     if(localStorage.getItem("Save") !== null){
         Classes = JSON.parse(localStorage.getItem("Save"))
 
-        for(var days in Classes){
-            period = 1
-            for(var periods in Classes[days]){
-                if(!(periods == "Homeroom" || periods == "Lunch" || periods == "Recess")){
-                    document.getElementById(days + period).value = Classes[days][periods].Class
-                    period += 1;
+        if(document.URL.includes("index")){
+            for(var days in Classes){
+                period = 1
+                for(var periods in Classes[days]){
+                    if(!(periods == "Homeroom" || periods == "Lunch" || periods == "Recess")){
+                        document.getElementById(days + period).value = Classes[days][periods].Class
+                        period += 1;
+                    }
                 }
             }
         }
