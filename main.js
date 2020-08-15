@@ -471,11 +471,38 @@ var Classes = {
             From: "14:30",
             Until: "15:20"
         }
-    },
+    }
 }
-function getTime() {
-    var time = new Date() 
+
+firstDay = new Date("08/10/2020")
+Days = ["MonA", "TueA", "WedA", "ThuA", "FriA", "Sat", "Sun", "MonB", "TueB", "WedB", "ThuB", "FriB", "Sat", "Sun"]
+
+function makeMinutes(time)
+{
+    var timeParts = time.split(":");
+
+    var timeInMinutes = (timeParts[0] * 60) + timeParts[1];
+
+    return timeInMinutes;
+}
+
+function getClass() {
+    var time = new Date()
+    x = (time.getTime() - firstDay.getTime()) / (1000 * 3600 * 24)
+    x = Math.ceil(x % 14) - 1
+
+    if (Days[x] == "Sun") {
+        document.getElementById("Current").innerHTML = "It's Sunday";
+    }
+    else if (Days[x] == "Sat") {
+        document.getElementById("Current").innerHTML = "It's Saturday";
+    }
+    else {
+        a = Classes[Days[x]]
+    }
+
     Hour = time.getHours()
+
     if (Hour < 10){
         Hour = "0" + Hour    
     }
@@ -490,8 +517,8 @@ function getTime() {
 }
 
 function updateDisplay() {
-    getTime()
-    mytime = setInterval('getTime()', 20000)
+    getClass()
+    mytime = setInterval('getClass()', 20000)
 }
 
 function Save() {

@@ -9,12 +9,17 @@
     text-align: center;
     margin-bottom: 0px;
 }
-.ClassTime{
+.ClassTime {
     font-size: 25px;
     text-align: center;
     margin-top: 0px;
 }
-.Later{
+.Next {
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+}
+.Later {
     font-size: 20px;
     font-weight: bold;
     text-align: center;
