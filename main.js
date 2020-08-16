@@ -476,6 +476,8 @@ var Classes = {
 
 firstDay = new Date("08/10/2020")
 Days = ["MonA", "TueA", "WedA", "ThuA", "FriA", "Sat", "Sun", "MonB", "TueB", "WedB", "ThuB", "FriB", "Sat", "Sun"]
+var wait = false
+var audio = new Audio('bell.mp3')
 
 function makeMinutes(time)
 {
@@ -487,7 +489,7 @@ function makeMinutes(time)
 }
 
 function getClass() {
-    var time = new Date()
+    var time = new Date("08/10/2020 8:50")
     x = (time.getTime() - firstDay.getTime()) / (1000 * 3600 * 24)
     x = Math.floor(x % 14)
 
@@ -552,6 +554,14 @@ function getClass() {
                 } else if (makeMinutes(time) < makeMinutes(CurrentDay[period].Until)){
                     document.getElementById(i).innerHTML = CurrentDay[period].Class
                     i += 1
+                }
+                if(makeMinutes(time) >= makeMinutes(CurrentDay[period].From) && makeMinutes(time) <= makeMinutes(CurrentDay[period].Until)){
+                    if ((makeMinutes(time) == makeMinutes(CurrentDay[period].From) || makeMinutes(time) == makeMinutes(CurrentDay[period].From)) && wait == false){
+                        audio.play()
+                        wait = true
+                    } else if (!(makeMinutes(time) == makeMinutes(CurrentDay[period].From) || makeMinutes(time) == makeMinutes(CurrentDay[period].From)) && wait == true){
+                        wait = false
+                    }
                 }
             }
             while(i < 10){
