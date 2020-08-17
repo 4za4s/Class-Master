@@ -575,7 +575,13 @@ function getClass() {
 
 function updateDisplay() {
     getClass()
-    mytime = setInterval('getClass()', 20000)
+    var time = new Date()
+    var update = (61 - time.getSeconds()) * 1000
+    setTimeout(mytime = () => { 
+            setInterval('getClass()', 60000);
+            getClass();
+        }, 
+        update)
 }
 
 function Save() {
