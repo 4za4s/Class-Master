@@ -489,7 +489,7 @@ function makeMinutes(time)
 }
 
 function getClass() {
-    var time = new Date("08/10/2020 15:20")
+    var time = new Date()
     x = (time.getTime() - firstDay.getTime()) / (1000 * 3600 * 24)
     x = Math.floor(x % 14)
 
