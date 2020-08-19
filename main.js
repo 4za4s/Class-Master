@@ -624,6 +624,5 @@ function Load() {
             var Volume = JSON.stringify(volumeslider.value)
             localStorage.setItem("Volume", Volume)
         } )
-        window.alert("This site will play audio, mute audio if you don't want it to")
     }
 }
