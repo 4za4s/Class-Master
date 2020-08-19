@@ -555,13 +555,8 @@ function getClass() {
                     document.getElementById(i).innerHTML = CurrentDay[period].Class
                     i += 1
                 }
-                if(makeMinutes(time) >= makeMinutes(CurrentDay[period].From) && makeMinutes(time) <= makeMinutes(CurrentDay[period].Until)){
-                    if ((makeMinutes(time) == makeMinutes(CurrentDay[period].From) || makeMinutes(time) == makeMinutes(CurrentDay[period].From)) && wait == false){
-                        audio.play()
-                        wait = true
-                    } else if (!(makeMinutes(time) == makeMinutes(CurrentDay[period].From) || makeMinutes(time) == makeMinutes(CurrentDay[period].From)) && wait == true){
-                        wait = false
-                    }
+                if (makeMinutes(time) == makeMinutes(CurrentDay[period].From) || makeMinutes(time) == makeMinutes(CurrentDay[period].From)){
+                    audio.play()
                 }
             }
             while(i < 10){
