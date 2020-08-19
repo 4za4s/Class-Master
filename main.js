@@ -66,7 +66,7 @@ var Classes = {
             Until: "10:51"
         },
         Homeroom: {
-            Class: "Pastrol",
+            Class: "Pastoral",
             From: "10:51",
             Until: "11:31"
         },
@@ -301,7 +301,7 @@ var Classes = {
             Until: "10:51"
         },
         Homeroom: {
-            Class: "Pastrol",
+            Class: "Pastoral",
             From: "10:51",
             Until: "11:31"
         },
@@ -489,7 +489,7 @@ function makeMinutes(time)
 }
 
 function getClass() {
-    var time = new Date()
+    var time = new Date("08/10/2020 15:20")
     x = (time.getTime() - firstDay.getTime()) / (1000 * 3600 * 24)
     x = Math.floor(x % 14)
 
@@ -541,6 +541,9 @@ function getClass() {
         } else if (makeMinutes(time) >= 90020){ //AFTER SCHOOL
             document.getElementById("Current").innerHTML = "After School";
             document.getElementById("ClassTime").innerHTML = "15:20-23:59";
+            if (makeMinutes(time) == makeMinutes("15:20")){
+                audio.play()
+            }
 
             for(var i = 1; i < 10; i++){
                 document.getElementById(i).innerHTML = ""
@@ -609,5 +612,17 @@ function Load() {
                 }
             }
         }
+    }
+    if(document.URL.includes("TimeTable")){  
+        volumeslider = document.getElementById("volumeslider");   
+        if(localStorage.getItem("Volume") !== null){
+            volumeslider.value = JSON.parse(localStorage.getItem("Volume"))
+        }
+        audio.volume = volumeslider.value / 100; 
+        volumeslider.addEventListener("mousemove", funcVolume = () => {
+            audio.volume = volumeslider.value / 100
+            var Volume = JSON.stringify(volumeslider.value)
+            localStorage.setItem("Volume", Volume)
+        } )
     }
 }
