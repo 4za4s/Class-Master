@@ -53,46 +53,46 @@ var Classes = {
         Period1: {
             Class: "",
             From: "8:50",
-            Until: "9:36"
+            Until: "9:38"
         },
         Period2: {
             Class: "",
-            From: "9:36",
-            Until: "10:22"
+            From: "9:38",
+            Until: "10:21"
         },
         Recess: {
             Class: "Recess",
-            From: "10:22",
-            Until: "10:51"
+            From: "10:21",
+            Until: "10:46"
         },
         Homeroom: {
             Class: "Pastoral",
-            From: "10:51",
-            Until: "11:31"
+            From: "10:46",
+            Until: "11:26"
         },
         Period3: {
             Class: "",
-            From: "11:31",
-            Until: "12:17"
+            From: "11:26",
+            Until: "12:14"
         },
         Period4: {
             Class: "",
-            From: "12:17",
-            Until: "13:03"
+            From: "12:14",
+            Until: "12:57"
         },
         Lunch: {
             Class: "Lunch",
-            From: "13:03",
-            Until: "13:48"
+            From: "12:57",
+            Until: "13:44"
         },
         Period5: {
             Class: "",
-            From: "13:48",
-            Until: "14:34"
+            From: "13:44",
+            Until: "14:32"
         },
         Period6: {
             Class: "",
-            From: "14:34",
+            From: "14:32",
             Until: "15:20"
         }
     },
@@ -288,46 +288,46 @@ var Classes = {
         Period1: {
             Class: "",
             From: "8:50",
-            Until: "9:36"
+            Until: "9:38"
         },
         Period2: {
             Class: "",
             From: "9:36",
-            Until: "10:22"
+            Until: "10:21"
         },
         Recess: {
             Class: "Recess",
-            From: "10:22",
-            Until: "10:51"
+            From: "10:21",
+            Until: "10:46"
         },
         Homeroom: {
             Class: "Pastoral",
-            From: "10:51",
-            Until: "11:31"
+            From: "10:46",
+            Until: "11:26"
         },
         Period3: {
             Class: "",
-            From: "11:31",
-            Until: "12:17"
+            From: "11:26",
+            Until: "12:14"
         },
         Period4: {
             Class: "",
-            From: "12:17",
-            Until: "13:03"
+            From: "12:14",
+            Until: "12:57"
         },
         Lunch: {
             Class: "Lunch",
-            From: "13:03",
-            Until: "13:48"
+            From: "12:57",
+            Until: "13:44"
         },
         Period5: {
             Class: "",
-            From: "13:48",
-            Until: "14:34"
+            From: "13:44",
+            Until: "14:32"
         },
         Period6: {
             Class: "",
-            From: "14:34",
+            From: "14:32",
             Until: "15:20"
         }
     },
